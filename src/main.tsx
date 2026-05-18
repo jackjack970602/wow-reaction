@@ -226,6 +226,7 @@ function App() {
             <img className="chip-state chip-state-default" src={tuiChip} alt="" />
             <img className="chip-state chip-state-pressed" src={tuiChipPressed} alt="" />
             <img className="chip-state chip-state-active" src={tuiChipActive} alt="" />
+            <span className="chip-active-pressed" aria-hidden="true" />
             {isShimmering && (
               <span
                 key={shimmerKey}

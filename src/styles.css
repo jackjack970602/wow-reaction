@@ -107,8 +107,7 @@ body {
 }
 
 .tui-chip[data-active="true"] .chip-state-default,
-.tui-chip[data-pressed="true"] .chip-state-default,
-.tui-chip[data-active="true"][data-pressed="true"] .chip-state-active {
+.tui-chip[data-pressed="true"] .chip-state-default {
   opacity: 0;
 }
 
@@ -118,6 +117,24 @@ body {
 }
 
 .tui-chip[data-pressed="true"] .chip-state-pressed {
+  opacity: 1;
+}
+
+.tui-chip[data-active="true"][data-pressed="true"] .chip-state-pressed {
+  opacity: 0;
+}
+
+.chip-active-pressed {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: rgba(142, 0, 48, 0.05);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.tui-chip[data-active="true"][data-pressed="true"] .chip-active-pressed {
   opacity: 1;
 }
 
