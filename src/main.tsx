@@ -162,13 +162,17 @@ function App() {
             <span className="chip-smile-cover" aria-hidden="true" />
           </span>
           {isSmileAnimating && (
-            <img
+            <span
               key={smileAnimationKey}
               className="chip-smile"
-              src={smileIcon}
-              alt=""
+              aria-hidden="true"
               onAnimationEnd={() => setIsSmileAnimating(false)}
-            />
+            >
+              <img className="chip-smile-base" src={smileIcon} alt="" />
+              <span className="face-heart face-heart-left" />
+              <span className="face-heart face-heart-right" />
+              <span className="face-smile-mouth" />
+            </span>
           )}
           {particles.map((particle) => (
             <span
