@@ -167,6 +167,39 @@ body {
   animation-delay: var(--particle-delay);
 }
 
+.particle-heart {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.particle-trail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 42px;
+  height: 12px;
+  display: block;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 99, 154, 0),
+    rgba(255, 99, 154, 0.32),
+    rgba(255, 225, 238, 0.72)
+  );
+  filter: blur(3px);
+  opacity: 0;
+  transform:
+    translate(-88%, -50%)
+    rotate(var(--particle-trail-rotation))
+    scaleX(0.72);
+  transform-origin: 90% 50%;
+  animation: particle-trail-fade var(--particle-duration) linear both;
+  animation-delay: var(--particle-delay);
+}
+
 @keyframes smile-pop {
   0% {
     transform: scale(1) rotate(0deg);
@@ -182,6 +215,24 @@ body {
 
   100% {
     transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes particle-trail-fade {
+  0% {
+    opacity: 0;
+  }
+
+  14% {
+    opacity: 0.55;
+  }
+
+  58% {
+    opacity: 0.28;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 

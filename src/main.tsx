@@ -6,10 +6,13 @@ import tuiChip from "../tui-chip.svg";
 import tuiChipPressed from "../tui-chip-1.svg";
 import tuiChipActive from "../tui-chip-2.svg";
 import smileIcon from "../face-smiling-with-heart-eyes.svg";
+import heartIcon from "../heart.svg";
+import heartIcon2 from "../heart 2.svg";
 import "./styles.css";
 
 type EmojiParticle = {
   id: number;
+  texture: string;
   delay: number;
   x25: number;
   y25: number;
@@ -23,6 +26,7 @@ type EmojiParticle = {
   rotation50: number;
   rotation75: number;
   rotation100: number;
+  trailRotation: number;
   scale: number;
   scale25: number;
   scale50: number;
@@ -77,6 +81,7 @@ const createEmojiBurst = () => {
 
     return {
       id: particleId++,
+      texture: Math.random() > 0.5 ? heartIcon : heartIcon2,
       delay: (index / particleBirthRate) * 1000,
       x25: p25.x,
       y25: p25.y,
@@ -90,6 +95,7 @@ const createEmojiBurst = () => {
       rotation50: p50.rotation,
       rotation75: p75.rotation,
       rotation100: p100.rotation,
+      trailRotation: angle + Math.PI,
       scale,
       scale25: scale + (scaleEnd - scale) * 0.25,
       scale50: scale + (scaleEnd - scale) * 0.5,
@@ -165,11 +171,9 @@ function App() {
             />
           )}
           {particles.map((particle) => (
-            <img
+            <span
               key={particle.id}
               className="emoji-particle"
-              src={smileIcon}
-              alt=""
               style={
                 {
                   "--particle-delay": `${particle.delay}ms`,
@@ -185,6 +189,7 @@ function App() {
                   "--particle-rotation-50": `${particle.rotation50}rad`,
                   "--particle-rotation-75": `${particle.rotation75}rad`,
                   "--particle-rotation-100": `${particle.rotation100}rad`,
+                  "--particle-trail-rotation": `${particle.trailRotation}rad`,
                   "--particle-scale": particle.scale,
                   "--particle-scale-25": particle.scale25,
                   "--particle-scale-50": particle.scale50,
@@ -198,7 +203,10 @@ function App() {
                   currentParticles.filter((item) => item.id !== particle.id),
                 )
               }
-            />
+            >
+              <span className="particle-trail" aria-hidden="true" />
+              <img className="particle-heart" src={particle.texture} alt="" />
+            </span>
           ))}
         </button>
       </section>
