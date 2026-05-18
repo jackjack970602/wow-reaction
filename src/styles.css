@@ -136,7 +136,7 @@ body {
 }
 
 .tui-chip[data-smile-animating="true"] .chip-smile-cover {
-  animation: hide-base-smile 300ms linear both;
+  animation: hide-base-smile 400ms linear both;
 }
 
 .chip-smile {
@@ -149,7 +149,7 @@ body {
   pointer-events: none;
   transform-origin: 50% 50%;
   z-index: 4;
-  animation: smile-pop 300ms ease-out both;
+  animation: smile-pop 400ms cubic-bezier(0.2, 0.9, 0.24, 1) both;
 }
 
 .emoji-particle {
@@ -205,12 +205,20 @@ body {
     transform: scale(1) rotate(0deg);
   }
 
-  33.333% {
+  22% {
+    transform: scale(1.16) rotate(4deg);
+  }
+
+  34% {
     transform: scale(1.2) rotate(8deg);
   }
 
-  66.666% {
-    transform: scale(1.2) rotate(-30deg);
+  58% {
+    transform: scale(1.16) rotate(-30deg);
+  }
+
+  78% {
+    transform: scale(1.04) rotate(-8deg);
   }
 
   100% {
