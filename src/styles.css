@@ -121,6 +121,25 @@ body {
   opacity: 1;
 }
 
+.chip-shimmer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -46px;
+  width: 46px;
+  display: block;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0.18) 48%,
+    rgba(255, 255, 255, 0)
+  );
+  filter: blur(1px);
+  pointer-events: none;
+  z-index: 1;
+  animation: chip-shimmer-pass 620ms ease-out both;
+}
+
 .chip-smile-cover {
   position: absolute;
   top: 2px;
@@ -226,6 +245,22 @@ body {
   background: rgba(255, 244, 249, 0.74);
   filter: blur(5px);
   transform: translate(18%, -50%);
+}
+
+@keyframes chip-shimmer-pass {
+  0% {
+    opacity: 0;
+    transform: translateX(0) skewX(-16deg);
+  }
+
+  18% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(222px) skewX(-16deg);
+  }
 }
 
 @keyframes particle-trail-fade {

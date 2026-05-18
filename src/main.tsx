@@ -167,9 +167,16 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
   const [isSmileAnimating, setIsSmileAnimating] = useState(false);
+  const [isShimmering, setIsShimmering] = useState(false);
+  const [shimmerKey, setShimmerKey] = useState(0);
   const [smileAnimationKey, setSmileAnimationKey] = useState(0);
   const [ripplePosition, setRipplePosition] = useState({ x: 68, y: 15 });
   const [particles, setParticles] = useState<EmojiParticle[]>([]);
+
+  const triggerShimmer = () => {
+    setIsShimmering(true);
+    setShimmerKey((key) => key + 1);
+  };
 
   const activateChip = (event: PointerEvent<HTMLButtonElement>) => {
     const bounds = event.currentTarget.getBoundingClientRect();
@@ -183,6 +190,9 @@ function App() {
 
     if (!isActive) {
       setIsActive(true);
+      window.setTimeout(triggerShimmer, 250);
+    } else {
+      triggerShimmer();
     }
   };
 
@@ -216,6 +226,14 @@ function App() {
             <img className="chip-state chip-state-default" src={tuiChip} alt="" />
             <img className="chip-state chip-state-pressed" src={tuiChipPressed} alt="" />
             <img className="chip-state chip-state-active" src={tuiChipActive} alt="" />
+            {isShimmering && (
+              <span
+                key={shimmerKey}
+                className="chip-shimmer"
+                aria-hidden="true"
+                onAnimationEnd={() => setIsShimmering(false)}
+              />
+            )}
             <span className="chip-smile-cover" aria-hidden="true" />
           </span>
           <HeartSmileAnimation
