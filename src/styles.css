@@ -147,14 +147,10 @@ body {
   height: 48px;
   display: block;
   overflow: visible;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   transform-origin: 50% 50%;
   z-index: 4;
-}
-
-.tui-chip[data-smile-animating="true"] .chip-smile {
-  opacity: 1;
 }
 
 .chip-smile svg {
