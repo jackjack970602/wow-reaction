@@ -141,10 +141,10 @@ body {
 
 .chip-smile {
   position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 24px;
-  height: 24px;
+  top: -2.5px;
+  left: -1.5px;
+  width: 35px;
+  height: 35px;
   display: block;
   pointer-events: none;
   transform-origin: 50% 50%;

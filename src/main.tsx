@@ -109,6 +109,11 @@ const createEmojiBurst = () => {
 
 function HeartSmileAnimation({ onComplete }: { onComplete: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const onCompleteRef = useRef(onComplete);
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     if (!containerRef.current) {
@@ -126,13 +131,15 @@ function HeartSmileAnimation({ onComplete }: { onComplete: () => void }) {
       },
     });
 
-    animation.addEventListener("complete", onComplete);
+    const handleComplete = () => onCompleteRef.current();
+
+    animation.addEventListener("complete", handleComplete);
 
     return () => {
-      animation.removeEventListener("complete", onComplete);
+      animation.removeEventListener("complete", handleComplete);
       animation.destroy();
     };
-  }, [onComplete]);
+  }, []);
 
   return <div className="chip-smile" ref={containerRef} aria-hidden="true" />;
 }
