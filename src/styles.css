@@ -130,7 +130,7 @@ body {
   display: block;
   border-radius: 50%;
   background: #ffe2ee;
-  opacity: 0;
+  opacity: 1;
   pointer-events: none;
   z-index: 2;
 }
@@ -141,15 +141,20 @@ body {
 
 .chip-smile {
   position: absolute;
-  top: 3px;
-  left: 4px;
-  width: 24px;
-  height: 24px;
+  top: -9px;
+  left: -8px;
+  width: 48px;
+  height: 48px;
   display: block;
   overflow: visible;
+  opacity: 0;
   pointer-events: none;
   transform-origin: 50% 50%;
   z-index: 4;
+}
+
+.tui-chip[data-smile-animating="true"] .chip-smile {
+  opacity: 1;
 }
 
 .chip-smile svg {
@@ -157,7 +162,7 @@ body {
   height: 100%;
   display: block;
   overflow: visible;
-  transform: scale(1.46);
+  transform: none;
   transform-origin: 50% 50%;
 }
 
