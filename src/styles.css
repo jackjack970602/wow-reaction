@@ -1,0 +1,236 @@
+:root {
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #101010;
+  background: #e7edf3;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.page-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 42%),
+    #e7edf3;
+}
+
+.phone-screen {
+  position: relative;
+  width: 375px;
+  height: 812px;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow:
+    0 24px 72px rgba(32, 42, 54, 0.24),
+    0 0 0 1px rgba(32, 42, 54, 0.08);
+}
+
+.screen-image {
+  display: block;
+  width: 375px;
+  height: 812px;
+  object-fit: cover;
+}
+
+.tui-chip {
+  position: absolute;
+  top: 426px;
+  left: 120px;
+  width: 135px;
+  height: 30px;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  --ripple-x: 68px;
+  --ripple-y: 15px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.chip-visual {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 15px;
+  z-index: 1;
+}
+
+.chip-state {
+  position: absolute;
+  inset: 0;
+  width: 135px;
+  height: 30px;
+  display: block;
+  opacity: 0;
+  transition: opacity 250ms ease;
+  pointer-events: none;
+}
+
+.chip-state-default {
+  opacity: 1;
+}
+
+.chip-state-pressed {
+  transition-duration: 40ms;
+}
+
+.chip-state-active {
+  clip-path: circle(0 at var(--ripple-x) var(--ripple-y));
+  opacity: 1;
+  transition: clip-path 250ms ease-out;
+}
+
+.tui-chip[data-active="true"] .chip-state-default,
+.tui-chip[data-pressed="true"] .chip-state-default,
+.tui-chip[data-active="true"][data-pressed="true"] .chip-state-active {
+  opacity: 0;
+}
+
+.tui-chip[data-active="true"] .chip-state-active {
+  clip-path: circle(155px at var(--ripple-x) var(--ripple-y));
+  opacity: 1;
+}
+
+.tui-chip[data-pressed="true"] .chip-state-pressed {
+  opacity: 1;
+}
+
+.chip-smile-cover {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  display: block;
+  border-radius: 50%;
+  background: #ffe2ee;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.tui-chip[data-smile-animating="true"] .chip-smile-cover {
+  animation: hide-base-smile 300ms linear both;
+}
+
+.chip-smile {
+  position: absolute;
+  top: 3px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
+  display: block;
+  pointer-events: none;
+  transform-origin: 50% 50%;
+  z-index: 4;
+  animation: smile-pop 300ms ease-out both;
+}
+
+.emoji-particle {
+  position: absolute;
+  top: -4px;
+  left: -3px;
+  width: 37.44px;
+  height: 37.44px;
+  display: block;
+  pointer-events: none;
+  opacity: 0;
+  transform-origin: 50% 50%;
+  z-index: 3;
+  animation: emoji-burst var(--particle-duration) linear both;
+  animation-delay: var(--particle-delay);
+}
+
+@keyframes smile-pop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  33.333% {
+    transform: scale(1.2) rotate(8deg);
+  }
+
+  66.666% {
+    transform: scale(1.2) rotate(-30deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes hide-base-smile {
+  0%,
+  99.999% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes emoji-burst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(var(--particle-scale)) rotate(0rad);
+  }
+
+  25% {
+    opacity: 0.7;
+    transform:
+      translate(var(--particle-x-25), var(--particle-y-25))
+      scale(var(--particle-scale-25))
+      rotate(var(--particle-rotation-25));
+  }
+
+  50% {
+    opacity: 0.4;
+    transform:
+      translate(var(--particle-x-50), var(--particle-y-50))
+      scale(var(--particle-scale-50))
+      rotate(var(--particle-rotation-50));
+  }
+
+  75% {
+    opacity: 0.16;
+    transform:
+      translate(var(--particle-x-75), var(--particle-y-75))
+      scale(var(--particle-scale-75))
+      rotate(var(--particle-rotation-75));
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(var(--particle-x-100), var(--particle-y-100))
+      scale(var(--particle-scale-end))
+      rotate(var(--particle-rotation-100));
+  }
+}
