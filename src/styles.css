@@ -168,10 +168,10 @@ body {
 
 .emoji-particle {
   position: absolute;
-  top: -4px;
-  left: -3px;
-  width: 37.44px;
-  height: 37.44px;
+  top: -8px;
+  left: -7px;
+  width: 44.93px;
+  height: 44.93px;
   display: block;
   pointer-events: none;
   opacity: 0;
