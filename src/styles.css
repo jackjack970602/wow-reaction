@@ -179,25 +179,39 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 42px;
-  height: 12px;
+  width: 68px;
+  height: 18px;
   display: block;
   border-radius: 999px;
   background: linear-gradient(
     90deg,
     rgba(255, 99, 154, 0),
-    rgba(255, 99, 154, 0.32),
-    rgba(255, 225, 238, 0.72)
+    rgba(255, 99, 154, 0.34) 42%,
+    rgba(255, 161, 198, 0.72) 72%,
+    rgba(255, 241, 247, 0.96)
   );
-  filter: blur(3px);
+  filter: blur(4px);
   opacity: 0;
   transform:
-    translate(-88%, -50%)
+    translate(-96%, -50%)
     rotate(var(--particle-trail-rotation))
-    scaleX(0.72);
+    scaleX(0.52);
   transform-origin: 90% 50%;
   animation: particle-trail-fade var(--particle-duration) linear both;
   animation-delay: var(--particle-delay);
+}
+
+.particle-trail::after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  content: "";
+  border-radius: 50%;
+  background: rgba(255, 244, 249, 0.92);
+  filter: blur(5px);
+  transform: translate(18%, -50%);
 }
 
 @keyframes smile-pop {
@@ -228,19 +242,35 @@ body {
 
 @keyframes particle-trail-fade {
   0% {
-    opacity: 0;
+    opacity: 0.82;
+    transform:
+      translate(-96%, -50%)
+      rotate(var(--particle-trail-rotation))
+      scaleX(0.96);
   }
 
   14% {
-    opacity: 0.55;
+    opacity: 0.72;
+    transform:
+      translate(-96%, -50%)
+      rotate(var(--particle-trail-rotation))
+      scaleX(0.84);
   }
 
-  58% {
-    opacity: 0.28;
+  34% {
+    opacity: 0.32;
+    transform:
+      translate(-96%, -50%)
+      rotate(var(--particle-trail-rotation))
+      scaleX(0.58);
   }
 
   100% {
     opacity: 0;
+    transform:
+      translate(-96%, -50%)
+      rotate(var(--particle-trail-rotation))
+      scaleX(0.22);
   }
 }
 
