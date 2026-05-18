@@ -67,8 +67,6 @@ body {
   border: 0;
   background: transparent;
   cursor: pointer;
-  --ripple-x: 68px;
-  --ripple-y: 15px;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -101,9 +99,8 @@ body {
 }
 
 .chip-state-active {
-  clip-path: circle(0 at var(--ripple-x) var(--ripple-y));
-  opacity: 1;
-  transition: clip-path 250ms ease-out;
+  opacity: 0;
+  transition: opacity 250ms ease;
 }
 
 .tui-chip[data-active="true"] .chip-state-default,
@@ -112,7 +109,6 @@ body {
 }
 
 .tui-chip[data-active="true"] .chip-state-active {
-  clip-path: circle(155px at var(--ripple-x) var(--ripple-y));
   opacity: 1;
 }
 

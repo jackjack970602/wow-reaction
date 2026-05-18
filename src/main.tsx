@@ -1,5 +1,5 @@
 import { StrictMode, useEffect, useRef, useState } from "react";
-import type { CSSProperties, PointerEvent } from "react";
+import type { CSSProperties } from "react";
 import { createRoot } from "react-dom/client";
 import lottie from "lottie-web";
 import type { AnimationItem } from "lottie-web";
@@ -170,20 +170,18 @@ function App() {
   const [isShimmering, setIsShimmering] = useState(false);
   const [shimmerKey, setShimmerKey] = useState(0);
   const [smileAnimationKey, setSmileAnimationKey] = useState(0);
-  const [ripplePosition, setRipplePosition] = useState({ x: 68, y: 15 });
   const [particles, setParticles] = useState<EmojiParticle[]>([]);
+
+  const triggerHaptic = () => {
+    navigator.vibrate?.(10);
+  };
 
   const triggerShimmer = () => {
     setIsShimmering(true);
     setShimmerKey((key) => key + 1);
   };
 
-  const activateChip = (event: PointerEvent<HTMLButtonElement>) => {
-    const bounds = event.currentTarget.getBoundingClientRect();
-    setRipplePosition({
-      x: event.clientX - bounds.left,
-      y: event.clientY - bounds.top,
-    });
+  const activateChip = () => {
     setParticles((currentParticles) => [...currentParticles, ...createEmojiBurst()]);
     setIsSmileAnimating(true);
     setSmileAnimationKey((key) => key + 1);
@@ -208,18 +206,15 @@ function App() {
           data-active={isActive}
           data-pressed={isPressed}
           data-smile-animating={isSmileAnimating}
-          style={
-            {
-              "--ripple-x": `${ripplePosition.x}px`,
-              "--ripple-y": `${ripplePosition.y}px`,
-            } as CSSProperties
-          }
           onPointerCancel={() => setIsPressed(false)}
-          onPointerDown={() => setIsPressed(true)}
+          onPointerDown={() => {
+            setIsPressed(true);
+            triggerHaptic();
+          }}
           onPointerLeave={() => setIsPressed(false)}
-          onPointerUp={(event) => {
+          onPointerUp={() => {
             setIsPressed(false);
-            activateChip(event);
+            activateChip();
           }}
         >
           <span className="chip-visual">
