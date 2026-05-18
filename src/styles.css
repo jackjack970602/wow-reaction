@@ -138,13 +138,13 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: -46px;
-  width: 46px;
+  left: -54px;
+  width: 54px;
   display: block;
   background: linear-gradient(
     100deg,
     rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.18) 48%,
+    rgba(255, 255, 255, 0.28) 48%,
     rgba(255, 255, 255, 0)
   );
   filter: blur(1px);
@@ -272,7 +272,7 @@ body {
 
   100% {
     opacity: 0;
-    transform: translateX(222px) skewX(-16deg);
+    transform: translateX(238px) skewX(-16deg);
   }
 }
 
