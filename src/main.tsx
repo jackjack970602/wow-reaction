@@ -2,6 +2,7 @@ import { StrictMode, useEffect, useRef, useState } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 import { createRoot } from "react-dom/client";
 import lottie from "lottie-web";
+import type { AnimationItem } from "lottie-web";
 import csatImage from "../csat2x.png";
 import tuiChip from "../tui-chip.svg";
 import tuiChipPressed from "../tui-chip-1.svg";
@@ -107,8 +108,15 @@ const createEmojiBurst = () => {
   });
 };
 
-function HeartSmileAnimation({ onComplete }: { onComplete: () => void }) {
+function HeartSmileAnimation({
+  playKey,
+  onComplete,
+}: {
+  playKey: number;
+  onComplete: () => void;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<AnimationItem | null>(null);
   const onCompleteRef = useRef(onComplete);
 
   useEffect(() => {
@@ -133,13 +141,24 @@ function HeartSmileAnimation({ onComplete }: { onComplete: () => void }) {
 
     const handleComplete = () => onCompleteRef.current();
 
+    animationRef.current = animation;
     animation.addEventListener("complete", handleComplete);
+    animation.goToAndStop(0, true);
 
     return () => {
       animation.removeEventListener("complete", handleComplete);
       animation.destroy();
+      animationRef.current = null;
     };
   }, []);
+
+  useEffect(() => {
+    if (playKey === 0) {
+      return;
+    }
+
+    animationRef.current?.goToAndPlay(0, true);
+  }, [playKey]);
 
   return <div className="chip-smile" ref={containerRef} aria-hidden="true" />;
 }
@@ -199,12 +218,10 @@ function App() {
             <img className="chip-state chip-state-active" src={tuiChipActive} alt="" />
             <span className="chip-smile-cover" aria-hidden="true" />
           </span>
-          {isSmileAnimating && (
-            <HeartSmileAnimation
-              key={smileAnimationKey}
-              onComplete={() => setIsSmileAnimating(false)}
-            />
-          )}
+          <HeartSmileAnimation
+            playKey={smileAnimationKey}
+            onComplete={() => setIsSmileAnimating(false)}
+          />
           {particles.map((particle) => (
             <span
               key={particle.id}
