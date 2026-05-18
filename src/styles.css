@@ -136,7 +136,7 @@ body {
 }
 
 .tui-chip[data-smile-animating="true"] .chip-smile-cover {
-  animation: hide-base-smile 400ms linear both;
+  opacity: 1;
 }
 
 .chip-smile {
@@ -149,7 +149,12 @@ body {
   pointer-events: none;
   transform-origin: 50% 50%;
   z-index: 4;
-  animation: smile-pop 400ms ease-out both;
+}
+
+.chip-smile svg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .emoji-particle {
@@ -214,32 +219,6 @@ body {
   transform: translate(18%, -50%);
 }
 
-@keyframes smile-pop {
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-
-  22% {
-    transform: scale(1.16) rotate(4deg);
-  }
-
-  34% {
-    transform: scale(1.2) rotate(8deg);
-  }
-
-  58% {
-    transform: scale(1.16) rotate(-30deg);
-  }
-
-  78% {
-    transform: scale(1.04) rotate(-8deg);
-  }
-
-  100% {
-    transform: scale(1) rotate(0deg);
-  }
-}
-
 @keyframes particle-trail-fade {
   0% {
     opacity: 0;
@@ -279,17 +258,6 @@ body {
       translate(-96%, -50%)
       rotate(var(--particle-trail-rotation))
       scaleX(0.22);
-  }
-}
-
-@keyframes hide-base-smile {
-  0%,
-  99.999% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
   }
 }
 

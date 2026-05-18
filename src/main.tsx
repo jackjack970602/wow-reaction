@@ -1,11 +1,12 @@
-import { StrictMode, useState } from "react";
+import { StrictMode, useEffect, useRef, useState } from "react";
 import type { CSSProperties, PointerEvent } from "react";
 import { createRoot } from "react-dom/client";
+import lottie from "lottie-web";
 import csatImage from "../csat2x.png";
 import tuiChip from "../tui-chip.svg";
 import tuiChipPressed from "../tui-chip-1.svg";
 import tuiChipActive from "../tui-chip-2.svg";
-import smileIcon from "../face-smiling-with-heart-eyes.svg";
+import heartSmileAnimation from "../heart-smile-animation.json";
 import heartIcon from "../heart.svg";
 import heartIcon2 from "../heart 2.svg";
 import "./styles.css";
@@ -106,6 +107,36 @@ const createEmojiBurst = () => {
   });
 };
 
+function HeartSmileAnimation({ onComplete }: { onComplete: () => void }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) {
+      return;
+    }
+
+    const animation = lottie.loadAnimation({
+      container: containerRef.current,
+      renderer: "svg",
+      loop: false,
+      autoplay: true,
+      animationData: heartSmileAnimation,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid meet",
+      },
+    });
+
+    animation.addEventListener("complete", onComplete);
+
+    return () => {
+      animation.removeEventListener("complete", onComplete);
+      animation.destroy();
+    };
+  }, [onComplete]);
+
+  return <div className="chip-smile" ref={containerRef} aria-hidden="true" />;
+}
+
 function App() {
   const [isActive, setIsActive] = useState(false);
   const [isPressed, setIsPressed] = useState(false);
@@ -162,12 +193,9 @@ function App() {
             <span className="chip-smile-cover" aria-hidden="true" />
           </span>
           {isSmileAnimating && (
-            <img
+            <HeartSmileAnimation
               key={smileAnimationKey}
-              className="chip-smile"
-              src={smileIcon}
-              alt=""
-              onAnimationEnd={() => setIsSmileAnimating(false)}
+              onComplete={() => setIsSmileAnimating(false)}
             />
           )}
           {particles.map((particle) => (
