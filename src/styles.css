@@ -129,14 +129,18 @@ body {
   height: 28px;
   display: block;
   border-radius: 50%;
-  background: #ffe2ee;
+  background: #f7f7f8;
   opacity: 1;
   pointer-events: none;
   z-index: 2;
 }
 
-.tui-chip[data-smile-animating="true"] .chip-smile-cover {
-  opacity: 1;
+.tui-chip[data-pressed="true"] .chip-smile-cover {
+  background: #f0f1f2;
+}
+
+.tui-chip[data-active="true"] .chip-smile-cover {
+  background: #ffe2ee;
 }
 
 .chip-smile {
