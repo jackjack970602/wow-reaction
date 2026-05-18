@@ -186,9 +186,9 @@ body {
   background: linear-gradient(
     90deg,
     rgba(255, 99, 154, 0),
-    rgba(255, 99, 154, 0.34) 42%,
-    rgba(255, 161, 198, 0.72) 72%,
-    rgba(255, 241, 247, 0.96)
+    rgba(255, 99, 154, 0.27) 42%,
+    rgba(255, 161, 198, 0.58) 72%,
+    rgba(255, 241, 247, 0.77)
   );
   filter: blur(4px);
   opacity: 0;
@@ -209,7 +209,7 @@ body {
   height: 18px;
   content: "";
   border-radius: 50%;
-  background: rgba(255, 244, 249, 0.92);
+  background: rgba(255, 244, 249, 0.74);
   filter: blur(5px);
   transform: translate(18%, -50%);
 }
@@ -242,23 +242,31 @@ body {
 
 @keyframes particle-trail-fade {
   0% {
-    opacity: 0.82;
+    opacity: 0;
     transform:
       translate(-96%, -50%)
       rotate(var(--particle-trail-rotation))
-      scaleX(0.96);
+      scaleX(0.3);
   }
 
-  14% {
-    opacity: 0.72;
+  8% {
+    opacity: 0;
     transform:
       translate(-96%, -50%)
       rotate(var(--particle-trail-rotation))
-      scaleX(0.84);
+      scaleX(0.54);
   }
 
-  34% {
-    opacity: 0.32;
+  18% {
+    opacity: 0.58;
+    transform:
+      translate(-96%, -50%)
+      rotate(var(--particle-trail-rotation))
+      scaleX(0.8);
+  }
+
+  38% {
+    opacity: 0.26;
     transform:
       translate(-96%, -50%)
       rotate(var(--particle-trail-rotation))
