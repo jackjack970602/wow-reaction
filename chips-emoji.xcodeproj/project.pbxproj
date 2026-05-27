@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		7D3692CE2FC700000059CA83 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 7D3692D02FC700000059CA83 /* Lottie */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		7D3692AB2FC6D95F0059CA83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D3692CE2FC700000059CA83 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = "chips-emoji";
 			packageProductDependencies = (
+				7D3692D02FC700000059CA83 /* Lottie */,
 			);
 			productName = "chips-emoji";
 			productReference = 7D36929B2FC6D95D0059CA83 /* chips-emoji.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = 7D3692922FC6D95D0059CA83;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7D3692CF2FC700000059CA83 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7D36929C2FC6D95D0059CA83 /* Products */;
 			projectDirPath = "";
@@ -578,6 +587,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7D3692CF2FC700000059CA83 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7D3692D02FC700000059CA83 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D3692CF2FC700000059CA83 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7D3692932FC6D95D0059CA83 /* Project object */;
 }
